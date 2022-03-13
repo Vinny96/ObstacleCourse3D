@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     // these variables will be used to change the speed of the player
-
+    [SerializeField] float moveSpeed;
 
 
     // Start is called before the first frame update
@@ -22,9 +22,9 @@ public class Mover : MonoBehaviour
 
     void setUpMovement()
     {
-        float xValue = Input.GetAxis("Horizontal");
-        float zValue = Input.GetAxis("Vertical");
-        Vector3 movementVector = new Vector3(xValue, 0, zValue);
+        float xValue = Input.GetAxis("Horizontal") * Time.deltaTime;
+        float zValue = Input.GetAxis("Vertical") * Time.deltaTime;
+        Vector3 movementVector = new Vector3(xValue, 0, zValue) * moveSpeed;
         transform.Translate(movementVector, Space.Self);
     }
 }
